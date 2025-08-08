@@ -31,8 +31,6 @@ public class GitHubRestClient {
             throw new RepositoryNotFoundException("User not found: " + username);
         } catch (HttpClientErrorException.Forbidden e) {
             throw new GitHubApiRateLimitException("GitHub API rate limit exceeded. Please try again later.");
-        } catch (HttpClientErrorException e) {
-            throw new RuntimeException("A client-side error occurred while calling the GitHub API: " + e.getMessage());
         }
     }
 

@@ -17,14 +17,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler({GitHubApiRateLimitException.class})
     public ResponseEntity<ErrorResponse> handleRateLimit(GitHubApiRateLimitException ex) {
         ErrorResponse errorBody = new ErrorResponse(HttpStatus.FORBIDDEN, ex.getMessage());
         return new ResponseEntity<>(errorBody, HttpStatus.FORBIDDEN);
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
-        ErrorResponse errorBody = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred.");
-        return new ResponseEntity<>(errorBody, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

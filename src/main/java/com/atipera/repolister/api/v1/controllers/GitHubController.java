@@ -1,5 +1,6 @@
 package com.atipera.repolister.api.v1.controllers;
 
+import com.atipera.repolister.api.v1.dto.RepoResponse;
 import com.atipera.repolister.services.GithubService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class GitHubController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<List<GitHubRepoResponse>> getRepos(@RequestParam String name) {
+    public ResponseEntity<List<RepoResponse>> getRepos(@RequestParam String name) {
         var result = githubService.getRepos(name);
         return ResponseEntity.ok(result);
     }

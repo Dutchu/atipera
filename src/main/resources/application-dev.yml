@@ -1,0 +1,8 @@
+server:
+  port: 8843
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:keystore/dev-keystore.p12
+    key-store-password: changeit
+    key-alias: dev-cert

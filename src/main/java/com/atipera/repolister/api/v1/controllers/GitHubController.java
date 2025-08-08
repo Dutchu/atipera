@@ -1,6 +1,5 @@
 package com.atipera.repolister.api.v1.controllers;
 
-import com.atipera.repolister.clients.github.dto.GitHubRepoResponse;
 import com.atipera.repolister.services.GithubService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

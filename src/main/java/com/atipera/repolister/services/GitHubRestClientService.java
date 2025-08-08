@@ -1,6 +1,5 @@
 package com.atipera.repolister.services;
 
-import com.atipera.repolister.clients.github.dto.GitHubRepoResponse;
 import com.atipera.repolister.clients.github.GitHubRestClient;
 import org.springframework.stereotype.Service;
 

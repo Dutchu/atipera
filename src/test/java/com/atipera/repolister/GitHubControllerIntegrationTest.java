@@ -43,6 +43,6 @@ public class GitHubControllerIntegrationTest {
         //then
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(response.getBody()).contains("\"status\":\"NOT_FOUND\"");
-        assertThat(response.getBody()).contains("\"message\":\"User not found\"");
+        assertThat(response.getBody()).containsAnyOf("User not found");
     }
 }

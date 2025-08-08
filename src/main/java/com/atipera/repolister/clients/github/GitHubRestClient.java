@@ -2,8 +2,10 @@ package com.atipera.repolister.clients.github;
 
 import com.atipera.repolister.clients.github.dto.GitHubBranchInfo;
 import com.atipera.repolister.clients.github.dto.GitHubRepoInfo;
+import com.atipera.repolister.services.exceptions.RepositoryNotFoundException;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 
 import java.util.List;
@@ -19,11 +21,16 @@ public class GitHubRestClient {
 
 
     public List<GitHubRepoInfo> fetchRepoData(String username) {
-        return restClient.get()
-                .uri("/users/{user}/repos", username)
-                .retrieve()
-                .body(new ParameterizedTypeReference<>() {
-                });
+        try {
+            return restClient.get()
+                    .uri("/users/{user}/repos", username)
+                    .retrieve()
+                    .body(new ParameterizedTypeReference<>() {
+                    });
+        } catch (HttpClientErrorException.NotFound e) {
+            throw new RepositoryNotFoundException("User not found: " + username);
+        }
+
     }
 
     public List<GitHubBranchInfo> fetchBranchData(String owner, String repoName) {

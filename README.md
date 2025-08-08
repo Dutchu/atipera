@@ -11,6 +11,7 @@ This project was created as a recruitment task for Atipera.
 *   Provides a custom `404 Not Found` error response in JSON format for non-existent users.
 *   Supports running over HTTPS using a development profile
 *   Handles potential API errors from GitHub, such as rate limiting.
+*   Utilizes Java 21 Virtual Threads for improved scalability.
 
 ## Technologies Used
 
@@ -19,6 +20,27 @@ This project was created as a recruitment task for Atipera.
 *   Spring Web
 *   Maven
 *   JUnit 5 (for integration testing)
+
+### Concurrency Model: Virtual Threads
+
+This application is configured to use **Java 21's Virtual Threads**, enabled via Spring Boot.
+
+**Why is this important?**
+This application is I/O-bound, meaning it spends most of its time waiting for network responses from the external GitHub API.
+
+*   **Traditional Model (Platform Threads):** In a traditional setup, the thread handling a request would be blocked while waiting,
+consuming a valuable OS thread.
+*   **Virtual Threads Model:** When a virtual thread encounters a blocking I/O operation (like an API call), it is "parked," and the
+underlying OS thread is freed up to handle other requests.
+
+This allows the application to handle a very high number of concurrent requests with a small number of OS threads, significantly improving throughput and resource efficiency without the complexity of asynchronous programming (like WebFlux). This feature is enabled in
+`application.yml`:
+```yaml
+spring:
+  threads:
+    virtual:
+      enabled: true
+```
 
 ---
 

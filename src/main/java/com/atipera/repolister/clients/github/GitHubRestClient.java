@@ -2,6 +2,7 @@ package com.atipera.repolister.clients.github;
 
 import com.atipera.repolister.clients.github.dto.GitHubBranchInfo;
 import com.atipera.repolister.clients.github.dto.GitHubRepoInfo;
+import com.atipera.repolister.services.exceptions.GitHubApiRateLimitException;
 import com.atipera.repolister.services.exceptions.RepositoryNotFoundException;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,6 @@ public class GitHubRestClient {
         this.restClient = restClient;
     }
 
-
     public List<GitHubRepoInfo> fetchRepoData(String username) {
         try {
             return restClient.get()
@@ -29,8 +29,11 @@ public class GitHubRestClient {
                     });
         } catch (HttpClientErrorException.NotFound e) {
             throw new RepositoryNotFoundException("User not found: " + username);
+        } catch (HttpClientErrorException.Forbidden e) {
+            throw new GitHubApiRateLimitException("GitHub API rate limit exceeded. Please try again later.");
+        } catch (HttpClientErrorException e) {
+            throw new RuntimeException("A client-side error occurred while calling the GitHub API: " + e.getMessage());
         }
-
     }
 
     public List<GitHubBranchInfo> fetchBranchData(String owner, String repoName) {

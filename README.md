@@ -89,9 +89,9 @@ This activates the `dev` profile defined in `application-dev.yml`, which enables
 
 java -jar -Dspring.profiles.active=dev target/repolister-0.0.1-SNAPSHOT.jar
 
-**The application will start, and the server will be running on port `8080` by default.**
-
 ---
+
+**The application will start, and the server will be running on port `8080` by default.**
 
 ## API Usage
 

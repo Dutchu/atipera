@@ -45,13 +45,7 @@ Informacje do zadania
 
 7. Zadania przyjmujemy jako link do publicznego github
 
-
-
 Powodzenia
-
-Adam Popławski
-
-
 
 Acceptance criteria:
 

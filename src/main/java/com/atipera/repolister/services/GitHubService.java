@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface GithubService {
+public interface GitHubService {
     List<RepoResponse> getRepos(String username);
 }

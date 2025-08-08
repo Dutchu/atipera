@@ -1,7 +1,7 @@
 package com.atipera.repolister.api.v1.controllers;
 
 import com.atipera.repolister.api.v1.dto.RepoResponse;
-import com.atipera.repolister.services.GithubService;
+import com.atipera.repolister.services.GitHubService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping
 public class GitHubController {
 
-    private final GithubService githubService;
+    private final GitHubService githubService;
 
-    public GitHubController(GithubService githubService) {
+    public GitHubController(GitHubService githubService) {
         this.githubService = githubService;
     }
 

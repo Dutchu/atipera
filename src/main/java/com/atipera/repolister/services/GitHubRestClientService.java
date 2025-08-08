@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class GitHubRestClientService implements GithubService {
+public class GitHubRestClientService implements GitHubService {
     private final GitHubRestClient gitHubRestClient;
 
     public GitHubRestClientService(GitHubRestClient gitHubRestClient) {

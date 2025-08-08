@@ -1,6 +1,6 @@
-package com.atipera.repolister.clients;
+package com.atipera.repolister.clients.github;
 
-import com.atipera.repolister.clients.github.GitHubRepo;
+import com.atipera.repolister.clients.github.dto.GitHubRepoResponse;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -17,7 +17,7 @@ public class GitHubRestClient {
     }
 
 
-    public List<GitHubRepo> fetchData(String username) {
+    public List<GitHubRepoResponse> fetchData(String username) {
         return restClient.get()
                 .uri("/users/{user}/repos", username)
                 .retrieve()

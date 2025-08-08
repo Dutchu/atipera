@@ -1,11 +1,11 @@
 package com.atipera.repolister.services;
 
-import com.atipera.repolister.clients.github.GitHubRepo;
+import com.atipera.repolister.clients.github.dto.GitHubRepoResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface GithubService {
-    List<GitHubRepo> getRepos(String username);
+    List<GitHubRepoResponse> getRepos(String username);
 }
